@@ -9,8 +9,8 @@ if (!empty($_GET['action'])) {
     extract($_GET);
     if ($action == "home") {
         include_once('views/view_home.php');
-    } elseif ($action == "media") { //View Media
-        include_once('views/media_view.php');
+    } elseif ($action == "fikr") { //View Fikr
+        include_once('views/view_fikr.php');
     } elseif ($action == "service") { //View Nos services
         include_once('views/service_view.php');
     } elseif ($action == "agence") { //View Agence

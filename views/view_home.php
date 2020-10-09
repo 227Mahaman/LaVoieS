@@ -79,7 +79,7 @@ ob_start();
                                 <div class="image" style="background-image: url('public/images/img_1.jpg');"></div>
                                 <div class="text">
                                     <h3 class="font-weight-light"><a href="single-post.html"><?= $value['titre']?></a></h3>
-                                    <div class="text-white mb-3"><span class="text-black-opacity-05"><small>By <?= $value['auteur']?> <span class="sep">/</span> 16 September 2017 <span class="sep">/</span> 1:30:20</small></span></div>
+                                    <div class="text-white mb-3"><span class="text-black-opacity-05"><small>By <?= $value['auteur']?> <span class="sep">/</span> <?= $value['date_event']?> <?= $value['time_event']?> <span class="sep">/</span> <?= $value['lieu_event']?></small></span></div>
                                     <p><?= $value['description']?></p>
                                 </div>
                             </div>

@@ -79,15 +79,8 @@ ob_start();
                                 <div class="image" style="background-image: url('public/images/img_1.jpg');"></div>
                                 <div class="text">
                                     <h3 class="font-weight-light"><a href="single-post.html"><?= $value['titre']?></a></h3>
-                                    <div class="text-white mb-3"><span class="text-black-opacity-05"><small>By Mike Smith <span class="sep">/</span> 16 September 2017 <span class="sep">/</span> 1:30:20</small></span></div>
-
-
-                                    <div class="player">
-                                        <audio id="player2" preload="none" controls style="max-width: 100%">
-                                            <source src="http://www.largesound.com/ashborytour/sound/AshboryBYU.mp3" type="audio/mp3">
-                                        </audio>
-                                    </div>
-
+                                    <div class="text-white mb-3"><span class="text-black-opacity-05"><small>By <?= $value['auteur']?> <span class="sep">/</span> 16 September 2017 <span class="sep">/</span> 1:30:20</small></span></div>
+                                    <p><?= $value['description']?></p>
                                 </div>
                             </div>
                             <?php } 

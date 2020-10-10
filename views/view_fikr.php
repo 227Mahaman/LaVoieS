@@ -19,7 +19,15 @@ ob_start();
             } else {
                 $target = "http:///admin/";
             }
-            $sql = "SELECT fikrs.id, fikrs.titre, fikrs.date_ajout, fikrs.ville, fikrs.langue, fikrs.auteur, fikrs.livre, (SELECT COUNT(datas.id) FROM datas WHERE datas.fikr=fikrs.id) as nombre FROM fikrs";
+            if(isset($_GET['langue'])){//Filtre by langue
+              $langue = $_GET['langue'];
+              $sql = "SELECT fikrs.id, fikrs.titre, fikrs.date_ajout, fikrs.ville, fikrs.langue, fikrs.auteur, fikrs.livre, (SELECT COUNT(datas.id) FROM datas WHERE datas.fikr=fikrs.id) as nombre FROM fikrs WHERE fikrs.langue='$langue'";
+            } elseif(isset($_GET['category'])){//Filtre by categorie
+              $category = $_GET['category'];
+              $sql = "SELECT fikrs.id, fikrs.titre, fikrs.date_ajout, fikrs.ville, fikrs.langue, fikrs.auteur, fikrs.livre, (SELECT COUNT(datas.id) FROM datas WHERE datas.fikr=fikrs.id) as nombre FROM fikrs WHERE fikrs.cfikr='$category'";
+            } else {
+              $sql = "SELECT fikrs.id, fikrs.titre, fikrs.date_ajout, fikrs.ville, fikrs.langue, fikrs.auteur, fikrs.livre, (SELECT COUNT(datas.id) FROM datas WHERE datas.fikr=fikrs.id) as nombre FROM fikrs";
+            }
             $data = Manager::getMultiplesRecords($sql);
             if (is_array($data) || is_object($data)) {
                 foreach ($data as $value) {

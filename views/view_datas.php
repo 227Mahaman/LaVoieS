@@ -1,35 +1,48 @@
 <?php
 $title = "Audio des fikrs";
 ob_start();
+$target = '';
+if ($_SERVER["SERVER_NAME"] == 'localhost') {
+    $target = "http://localhost/laVoieDesSalaf";
+} else {
+    $target = "http:///admin/";
+}
+if(isset($_GET['fikr'])){
+    $id = $_GET['fikr'];
+    $sql = "SELECT datas.id, datas.titre, datas.date, datas.fikr, datas.chemin FROM datas WHERE datas.fikr='$id'";
+    //$data = Manager::getData('datas', 'id', $id)['data'];
+    $data = Manager::getMultiplesRecords($sql);
+} else {
+    $data = Manager::getData('datas', true)['data'];
+}
+$fikr = Manager::getData('fikrs', 'id', $id)['data'];
+$oulema = Manager::getData('auteurs', 'id', $fikr['auteur'])['data'];
 ?>
-<div class="container pt-5 hero">
+<div class="site-blocks-cover inner-page-cover bg-light mb-5">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-12 text-center">
+        <a href="#">Les fichiers audios du fikr</a><!--<span class="mx-2">&bullet;</span> Jun 25, 2020 <span class="mx-2">&bullet;</span> 1:30:20-->
+        <h1 class="mb-3"><?= $fikr['titre']?></h1>
+        <h1 class="mb-2">Shaykh <?= $oulema['nom']?></h1>
+      </div>
+    </div>
+  </div>
+</div>
+<!--<div class="container pt-5 hero">
   <div class="row align-items-center text-center text-md-left">  
   <img src="public/images/voie.jpg" alt="Image" class="img-fluid">
   </div>
-</div>
+</div>-->
     
 <div class="site-section">
   <div class="container">
     <div class="row">
       <div class="col-lg-9">
         <?php
-            $target = '';
-            if ($_SERVER["SERVER_NAME"] == 'localhost') {
-                $target = "http://localhost/laVoieDesSalaf";
-            } else {
-                $target = "http:///admin/";
-            }
-            if(isset($_GET['fikr'])){
-                $id = $_GET['fikr'];
-                $sql = "SELECT datas.id, datas.titre, datas.date, datas.fikr, datas.chemin FROM datas WHERE datas.fikr='$id'";
-                //$data = Manager::getData('datas', 'id', $id)['data'];
-                $data = Manager::getMultiplesRecords($sql);
-            } else {
-                $data = Manager::getData('datas', true)['data'];
-            }
             if (is_array($data) || is_object($data)) {
                 foreach ($data as $value) {
-                  $fikr = Manager::getData('fikrs', 'id', $value['fikr'])['data'];
+                  //$fikr = Manager::getData('fikrs', 'id', $value['fikr'])['data'];
                 ?>
                 <div class="d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
                     <div class="image" style="background-image: url('public/images/img_1.jpg');"></div>

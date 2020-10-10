@@ -2,11 +2,21 @@
 $title = "Nos Fikrs";
 ob_start();
 ?>
-<div class="container pt-5 hero">
+<div class="site-blocks-cover inner-page-cover bg-light mb-5">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-12 text-center">
+        <a href="#">Les différents conférences, cours, lectures ...</a><!--<span class="mx-2">&bullet;</span> Jun 25, 2020 <span class="mx-2">&bullet;</span> 1:30:20-->
+        <h1 class="mb-3">FIKRS</h1>
+      </div>
+    </div>
+  </div>
+</div>
+<!--<div class="container pt-5 hero">
   <div class="row align-items-center text-center text-md-left">  
   <img src="public/images/voie.jpg" alt="Image" class="img-fluid">
   </div>
-</div>
+</div>-->
     
 <div class="site-section">
   <div class="container">

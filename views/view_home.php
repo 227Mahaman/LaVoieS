@@ -3,18 +3,17 @@ $title = "Accueil";
 ob_start();
 ?>
 <div class="container pt-5 hero">
-      <div class="row align-items-center text-center text-md-left">
-        
-        <div class="col-lg-4">
-            <img src="public/images/logo.png" alt="Image" class="img-fluid">
-          <h1 class="mb-3 display-3">Bismillah</h1>
-          <p>Au nom d'ALLAH, le Tout Miséricordieux, le très Miséricordieux!</p>
-        </div>
-        <div class="col-lg-8">
-          <img src="public/images/voie.jpg" alt="Image" class="img-fluid">    
-        </div>
-      </div>
+  <div class="row align-items-center text-center text-md-left">
+    <div class="col-lg-4">
+      <img src="public/images/logo.png" alt="Image" class="img-fluid">
+      <h1 class="mb-3 display-3">Bismillah</h1>
+      <p>Au nom d'ALLAH, le Tout Miséricordieux, le très Miséricordieux!</p>
     </div>
+    <div class="col-lg-8">
+      <img src="public/images/voie.jpg" alt="Image" class="img-fluid">    
+    </div>
+  </div>
+</div>
     
 
     <div class="site-section">
@@ -286,7 +285,6 @@ ob_start();
     <div class="site-blocks-cover overlay inner-page-cover" style="background-image: url(public/images/hero_bg_1.jpg);" data-aos="fade" data-stellar-background-ratio="0.5">
       <div class="container">
         <div class="row align-items-center justify-content-center text-center">
-
           <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
             <h2>Subscribe</h2>
             <p class="mb-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit nihil saepe libero sit odio obcaecati veniam.</p>

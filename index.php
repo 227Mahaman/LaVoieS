@@ -11,8 +11,8 @@ if (!empty($_GET['p'])) {
         include_once('views/view_home.php');
     } elseif ($p == "fikr") { //View Fikr
         include_once('views/view_fikr.php');
-    } elseif ($p == "service") { //View Nos services
-        include_once('views/service_view.php');
+    } elseif ($p == "datas") { //View Datas
+        include_once('views/view_datas.php');
     } elseif ($p == "agence") { //View Agence
         include_once('views/agence_view.php');
     } elseif ($p == "contact") { //View Contact

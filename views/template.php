@@ -43,7 +43,7 @@
 
 
           <div class="col-3">
-            <h1 class="site-logo"><a href="index.php?p=home" class="h2">IslamNiger<span class="text-primary">.</span> </a></h1>
+            <h1 class="site-logo"><a href="index.php?p=home" class="h2">IslamNiger<span class="text-success">.</span> </a></h1>
           </div>
           <div class="col-9">
             <nav class="site-navigation position-relative text-right text-md-right" role="navigation">

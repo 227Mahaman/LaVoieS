@@ -41,20 +41,36 @@ ob_start();
       </div>
       <div class="col-lg-3">
         <div class="featured-user  mb-5 mb-lg-0">
-          <h3 class="mb-4">Actualités</h3>
+          <h3 class="mb-4">Langues</h3>
           <ul class="list-unstyled">
-            <li>
-              <a href="#" class="d-flex align-items-center">
-                  <img src="public/images/person_1.jpg" alt="Image" class="img-fluid mr-2">
-                  <div class="podcaster">
-                  <span class="d-block">Claire Stanford</span>
-                  <span class="small">32,420 podcasts</span>
-                  </div>
-              </a>
-            </li>
+            <?php
+              $target = '';
+              if ($_SERVER["SERVER_NAME"] == 'localhost') {
+                  $target = "http://localhost/laVoieDesSalaf";
+              } else {
+                  $target = "http:///admin/";
+              }
+              $sql = "SELECT langues.id, langues.code, langues.titre, (SELECT COUNT(fikrs.id) FROM fikrs WHERE fikrs.langue=langues.id) as nombre FROM langues";
+              $data = Manager::getMultiplesRecords($sql);
+              //$data = Manager::getData("langues", true)['data'];
+              if (is_array($data) || is_object($data)) {
+                  foreach ($data as $value) {
+                  ?>
+                <li>
+                  <a href="index.php?p=fikr&langue=<?= $value['id']?>" class="d-flex align-items-center">
+                    <img src="public/images/person_1.jpg" alt="Image" class="img-fluid mr-2">
+                    <div class="podcaster">
+                      <span class="d-block"><?= $value['titre']?></span>
+                      <span class="small"><?= $value['nombre']?> fikrs</span>
+                    </div>
+                  </a>
+                </li>
+                <?php } 
+              }
+            ?>
           </ul>
           <hr>
-          <h3 class="mb-4">Fikrs</h3>
+          <h3 class="mb-4">Catégorie de Fikr</h3>
           <ul class="list-unstyled">
             <?php
             $target = '';
@@ -63,18 +79,20 @@ ob_start();
             } else {
                 $target = "http:///admin/";
             }
-            $data = Manager::getData("cfikr", true)['data'];
+              $sql = "SELECT cfikr.id, cfikr.titre, (SELECT COUNT(fikrs.id) FROM fikrs WHERE fikrs.cfikr=cfikr.id) as nombre FROM cfikr";
+              $data = Manager::getMultiplesRecords($sql);
+            //$data = Manager::getData("cfikr", true)['data'];
             if (is_array($data) || is_object($data)) {
                 foreach ($data as $value) {
                 ?>
               <li>
-              <a href="index.php?p=fikrs&id=<?= $value['titre']?>" class="d-flex align-items-center">
+                <a href="index.php?p=fikr&category=<?= $value['id']?>" class="d-flex align-items-center">
                   <img src="public/images/person_1.jpg" alt="Image" class="img-fluid mr-2">
                   <div class="podcaster">
-                  <span class="d-block"><?= $value['titre']?></span>
-                  <span class="small">32,420 podcasts</span>
+                    <span class="d-block"><?= $value['titre']?></span>
+                    <span class="small"><?= $value['nombre']?> fikrs</span>
                   </div>
-              </a>
+                </a>
               </li>
               <?php } 
                 }

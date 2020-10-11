@@ -13,6 +13,8 @@ if (!empty($_GET['p'])) {
         include_once('views/view_fikr.php');
     } elseif ($p == "datas") { //View Datas
         include_once('views/view_datas.php');
+    } elseif ($p == "annonce") { //View Annonce
+        include_once('views/view_annonce.php');
     } elseif ($p == "oulema") { //View Oulema
         include_once('views/view_oulema.php');
     } elseif ($p == "contact") { //View Contact

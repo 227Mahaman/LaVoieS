@@ -21,7 +21,38 @@ ob_start();
 <div class="site-section">
   <div class="container">
     <div class="row">
-      <div class="col-lg-9">
+    <div class="col-lg-2">
+        <div class="featured-user  mb-5 mb-lg-0">
+          <h3 class="mb-4">Villes</h3>
+          <ul class="list-unstyled">
+            <?php
+              $target = '';
+              if ($_SERVER["SERVER_NAME"] == 'localhost') {
+                  $target = "http://localhost/IslamNiger/";
+              } else {
+                  $target = "http:///admin/";
+              }
+              $sql = "SELECT ville.id, ville.titre, (SELECT COUNT(fikrs.id) FROM fikrs WHERE fikrs.ville=ville.id) as nombre FROM ville";
+              $data = Manager::getMultiplesRecords($sql);
+              if (is_array($data) || is_object($data)) {
+                  foreach ($data as $value) {
+                  ?>
+                <li>
+                  <a href="index.php?p=fikr&ville=<?= $value['id']?>" class="d-flex align-items-center">
+                    <img src="public/images/person_1.jpg" alt="Image" class="img-fluid mr-2">
+                    <div class="podcaster">
+                      <span class="d-block"><?= $value['titre']?></span>
+                      <span class="small"><?= $value['nombre']?> fikrs</span>
+                    </div>
+                  </a>
+                </li>
+                <?php } 
+              }
+            ?>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-8">
         <?php
             $target = '';
             if ($_SERVER["SERVER_NAME"] == 'localhost') {
@@ -57,7 +88,7 @@ ob_start();
             }
         ?>
       </div>
-      <div class="col-lg-3">
+      <div class="col-lg-2">
         <div class="featured-user  mb-5 mb-lg-0">
           <h3 class="mb-4">Langues</h3>
           <ul class="list-unstyled">

@@ -65,12 +65,6 @@ $oulema = Manager::getData('auteurs', 'id', $fikr['auteur'])['data'];
           <h3 class="mb-4">Langues</h3>
           <ul class="list-unstyled">
             <?php
-              $target = '';
-              if ($_SERVER["SERVER_NAME"] == 'localhost') {
-                  $target = "http://localhost/laVoieDesSalaf";
-              } else {
-                  $target = "http:///admin/";
-              }
               $sql = "SELECT langues.id, langues.code, langues.titre, (SELECT COUNT(fikrs.id) FROM fikrs WHERE fikrs.langue=langues.id) as nombre FROM langues";
               $data = Manager::getMultiplesRecords($sql);
               //$data = Manager::getData("langues", true)['data'];
@@ -94,12 +88,6 @@ $oulema = Manager::getData('auteurs', 'id', $fikr['auteur'])['data'];
           <h3 class="mb-4">Catégorie de Fikr</h3>
           <ul class="list-unstyled">
             <?php
-            $target = '';
-            if ($_SERVER["SERVER_NAME"] == 'localhost') {
-                $target = "http://localhost/laVoieDesSalaf";
-            } else {
-                $target = "http:///admin/";
-            }
               $sql = "SELECT cfikr.id, cfikr.titre, (SELECT COUNT(fikrs.id) FROM fikrs WHERE fikrs.cfikr=cfikr.id) as nombre FROM cfikr";
               $data = Manager::getMultiplesRecords($sql);
             //$data = Manager::getData("cfikr", true)['data'];

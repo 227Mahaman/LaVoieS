@@ -1,6 +1,12 @@
 <?php
 $title = "Nos Fikrs";
 ob_start();
+$target = '';
+if ($_SERVER["SERVER_NAME"] == 'localhost') {
+    $target = "http://localhost/IslamNiger/";
+} else {
+    $target = "http:///admin/";
+}
 ?>
 <div class="site-blocks-cover inner-page-cover bg-light mb-5">
   <div class="container">
@@ -26,12 +32,6 @@ ob_start();
           <h3 class="mb-4">Villes</h3>
           <ul class="list-unstyled">
             <?php
-              $target = '';
-              if ($_SERVER["SERVER_NAME"] == 'localhost') {
-                  $target = "http://localhost/IslamNiger/";
-              } else {
-                  $target = "http:///admin/";
-              }
               $sql = "SELECT ville.id, ville.titre, (SELECT COUNT(fikrs.id) FROM fikrs WHERE fikrs.ville=ville.id) as nombre FROM ville";
               $data = Manager::getMultiplesRecords($sql);
               if (is_array($data) || is_object($data)) {
@@ -54,12 +54,6 @@ ob_start();
       </div>
       <div class="col-lg-8">
         <?php
-            $target = '';
-            if ($_SERVER["SERVER_NAME"] == 'localhost') {
-                $target = "http://localhost/IslamNiger/";
-            } else {
-                $target = "http:///admin/";
-            }
             if(isset($_GET['langue'])){//Filtre by langue
               $langue = $_GET['langue'];
               $sql = "SELECT fikrs.id, fikrs.titre, fikrs.date_ajout, fikrs.ville, fikrs.langue, fikrs.auteur, fikrs.livre, fikrs.photo, (SELECT COUNT(datas.id) FROM datas WHERE datas.fikr=fikrs.id) as nombre FROM fikrs WHERE fikrs.langue='$langue'";
@@ -97,12 +91,6 @@ ob_start();
           <h3 class="mb-4">Langues</h3>
           <ul class="list-unstyled">
             <?php
-              $target = '';
-              if ($_SERVER["SERVER_NAME"] == 'localhost') {
-                  $target = "http://localhost/laVoieDesSalaf";
-              } else {
-                  $target = "http:///admin/";
-              }
               $sql = "SELECT langues.id, langues.code, langues.titre, (SELECT COUNT(fikrs.id) FROM fikrs WHERE fikrs.langue=langues.id) as nombre FROM langues";
               $data = Manager::getMultiplesRecords($sql);
               //$data = Manager::getData("langues", true)['data'];

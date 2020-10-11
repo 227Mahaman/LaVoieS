@@ -21,7 +21,7 @@ ob_start();
 <div class="site-section">
   <div class="container">
     <div class="row">
-    <div class="col-lg-2">
+      <div class="col-lg-2">
         <div class="featured-user  mb-5 mb-lg-0">
           <h3 class="mb-4">Villes</h3>
           <ul class="list-unstyled">
@@ -56,20 +56,21 @@ ob_start();
         <?php
             $target = '';
             if ($_SERVER["SERVER_NAME"] == 'localhost') {
-                $target = "http://localhost/laVoieDesSalaf";
+                $target = "http://localhost/IslamNiger/";
             } else {
                 $target = "http:///admin/";
             }
             if(isset($_GET['langue'])){//Filtre by langue
               $langue = $_GET['langue'];
-              $sql = "SELECT fikrs.id, fikrs.titre, fikrs.date_ajout, fikrs.ville, fikrs.langue, fikrs.auteur, fikrs.livre, (SELECT COUNT(datas.id) FROM datas WHERE datas.fikr=fikrs.id) as nombre FROM fikrs WHERE fikrs.langue='$langue'";
+              $sql = "SELECT fikrs.id, fikrs.titre, fikrs.date_ajout, fikrs.ville, fikrs.langue, fikrs.auteur, fikrs.livre, fikrs.photo, (SELECT COUNT(datas.id) FROM datas WHERE datas.fikr=fikrs.id) as nombre FROM fikrs WHERE fikrs.langue='$langue'";
             } elseif(isset($_GET['category'])){//Filtre by categorie
               $category = $_GET['category'];
-              $sql = "SELECT fikrs.id, fikrs.titre, fikrs.date_ajout, fikrs.ville, fikrs.langue, fikrs.auteur, fikrs.livre, (SELECT COUNT(datas.id) FROM datas WHERE datas.fikr=fikrs.id) as nombre FROM fikrs WHERE fikrs.cfikr='$category'";
+              $sql = "SELECT fikrs.id, fikrs.titre, fikrs.date_ajout, fikrs.ville, fikrs.langue, fikrs.auteur, fikrs.livre, fikrs.photo, (SELECT COUNT(datas.id) FROM datas WHERE datas.fikr=fikrs.id) as nombre FROM fikrs WHERE fikrs.cfikr='$category'";
             } else {
-              $sql = "SELECT fikrs.id, fikrs.titre, fikrs.date_ajout, fikrs.ville, fikrs.langue, fikrs.auteur, fikrs.livre, (SELECT COUNT(datas.id) FROM datas WHERE datas.fikr=fikrs.id) as nombre FROM fikrs";
+              $sql = "SELECT fikrs.id, fikrs.titre, fikrs.date_ajout, fikrs.ville, fikrs.langue, fikrs.auteur, fikrs.livre, fikrs.photo, (SELECT COUNT(datas.id) FROM datas WHERE datas.fikr=fikrs.id) as nombre FROM fikrs";
             }
             $data = Manager::getMultiplesRecords($sql);
+          //var_dump($data);die;
             if (is_array($data) || is_object($data)) {
                 foreach ($data as $value) {
                   $oulema = Manager::getData('auteurs', 'id', $value['auteur'])['data'];
@@ -77,7 +78,7 @@ ob_start();
                   $ville = Manager::getData('ville', 'id', $value['ville'])['data'];
                 ?>
                 <div class="d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
-                    <div class="image" style="background-image: url('public/images/img_1.jpg');"></div>
+                    <div class="image" style="background-image: url('<?= $target.Manager::getData("files", "id", $value['photo'])['data']['file_url']; ?>');"></div>
                     <div class="text">
                         <h3 class="font-weight-light"><a href="index.php?p=datas&fikr=<?= $value['id']?>"><?= $value['titre']?>, <?= $oulema['nom'] . ' ' . $oulema['prenom']?></a></h3>
                         <div class="text-white mb-3"><span class="text-black-opacity-05"><small>Publié le <?= $value['date_ajout']?> <span class="sep">/</span>Ville: <?= $ville['titre']?> <span class="sep">/</span>Langue: <?= $langue['titre']?></small></span></div>

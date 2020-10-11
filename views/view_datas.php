@@ -9,7 +9,7 @@ if ($_SERVER["SERVER_NAME"] == 'localhost') {
 }
 if(isset($_GET['fikr'])){
     $id = $_GET['fikr'];
-    $sql = "SELECT datas.id, datas.titre, datas.date, datas.fikr, datas.chemin FROM datas WHERE datas.fikr='$id'";
+    $sql = "SELECT datas.id, datas.titre, datas.date, datas.fikr, datas.chemin, (SELECT fikrs.photo FROM fikrs WHERE datas.fikr=fikrs.id) as path_url FROM datas WHERE datas.fikr='$id'";
     //$data = Manager::getData('datas', 'id', $id)['data'];
     $data = Manager::getMultiplesRecords($sql);
 } else {
@@ -45,7 +45,7 @@ $oulema = Manager::getData('auteurs', 'id', $fikr['auteur'])['data'];
                   //$fikr = Manager::getData('fikrs', 'id', $value['fikr'])['data'];
                 ?>
                 <div class="d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
-                    <div class="image" style="background-image: url('public/images/img_1.jpg');"></div>
+                    <div class="image" style="background-image: url('<?= $target.Manager::getData("files", "id", $value['path_url'])['data']['file_url']; ?>');"></div>
                     <div class="text">
                         <h3 class="font-weight-light"><a href="index.php?p=datas&fikr=<?= $value['id']?>"><?= $value['titre']?>, <?= $fikr['titre'];?></a></h3>
                         <div class="text-white mb-3"><span class="text-black-opacity-05"><small>Publié le <?= $value['date']?></small></span></div>

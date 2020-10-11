@@ -1,6 +1,12 @@
 <?php
 $title = "Accueil";
 ob_start();
+$target = '';
+if ($_SERVER["SERVER_NAME"] == 'localhost') {
+    $target = "http://localhost/IslamNiger/";
+} else {
+    $target = "http:///admin/";
+}
 ?>
 
 <div class="site-blocks-cover overlay inner-page-cover" style="background-image: url(public/images/voie.jpg);" data-aos="fade" data-stellar-background-ratio="0.5">
@@ -49,12 +55,6 @@ ob_start();
                         <h3 class="mb-4">Fikrs</h3>
                         <ul class="list-unstyled">
                           <?php
-                          $target = '';
-                          if ($_SERVER["SERVER_NAME"] == 'localhost') {
-                              $target = "http://localhost/laVoieDesSalaf";
-                          } else {
-                              $target = "http:///admin/";
-                          }
                           $data = Manager::getData("cfikr", true)['data'];
                           if (is_array($data) || is_object($data)) {
                               foreach ($data as $value) {
@@ -76,18 +76,12 @@ ob_start();
                 </div>
                 <div class="col-lg-9">
                     <?php
-                        $target = '';
-                        if ($_SERVER["SERVER_NAME"] == 'localhost') {
-                            $target = "http://localhost/laVoieDesSalaf";
-                        } else {
-                            $target = "http:///admin/";
-                        }
                         $data = Manager::getData("annonces", true)['data'];
                         if (is_array($data) || is_object($data)) {
                             foreach ($data as $value) {
                             ?>
                             <div class="d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
-                                <div class="image" style="background-image: url('public/images/img_1.jpg');"></div>
+                                <div class="image" style="background-image: url('<?= $target.Manager::getData("files", "id", $value['photo'])['data']['file_url']; ?>');"></div>
                                 <div class="text">
                                     <h3 class="font-weight-light"><a href="single-post.html"><?= $value['titre']?></a></h3>
                                     <div class="text-white mb-3"><span class="text-black-opacity-05"><small>By <?= $value['auteur']?> <span class="sep">/</span> Date: <?= $value['date_event']?> à <?= $value['time_event']?> <span class="sep">/</span>Lieu: <?= $value['lieu']?></small></span></div>

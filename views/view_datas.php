@@ -3,9 +3,9 @@ $title = "Audio des fikrs";
 ob_start();
 $target = '';
 if ($_SERVER["SERVER_NAME"] == 'localhost') {
-    $target = "http://localhost/laVoieDesSalaf";
+    $target = "http://localhost/IslamNiger/";
 } else {
-    $target = "http:///admin/";
+    $target = "http://admin/";
 }
 if(isset($_GET['fikr'])){
     $id = $_GET['fikr'];
@@ -50,7 +50,7 @@ $oulema = Manager::getData('auteurs', 'id', $fikr['auteur'])['data'];
                         <h3 class="font-weight-light"><a href="index.php?p=datas&fikr=<?= $value['id']?>"><?= $value['titre']?>, <?= $fikr['titre'];?></a></h3>
                         <div class="text-white mb-3"><span class="text-black-opacity-05"><small>Publié le <?= $value['date']?></small></span></div>
                         <div class="player">
-                            <audio id="player2" preload="none" controls style="max-width: 100%">
+                            <audio id="player2" preload="metadata" controls style="max-width: 100%">
                             <source src="<?= $target.Manager::getData("files", "id", $value['chemin'])['data']['file_url'] ?>" type="audio/mp3">
                             </audio>
                         </div>

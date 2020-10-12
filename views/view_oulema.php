@@ -1,8 +1,24 @@
 <?php
 $title = "Oulema";
 ob_start();
+$target = '';
+if ($_SERVER["SERVER_NAME"] == 'localhost') {
+    $target = "http://localhost/IslamNiger/";
+} else {
+    $target = "http:///admin/";
+}
 ?>
-<div class="site-section">
+<div class="site-blocks-cover inner-page-cover bg-light mb-5">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-12 text-center">
+        <a href="#">Bibliographie de nos savants</a><!--<span class="mx-2">&bullet;</span> Jun 25, 2020 <span class="mx-2">&bullet;</span> 1:30:20-->
+        <h1 class="mb-3">Nos Oulèmas</h1>
+      </div>
+    </div>
+  </div>
+</div>
+<!--<div class="site-section">
   <div class="container" data-aos="fade-up">
     <div class="row mb-5">
       <div class="col-md-12 text-center">
@@ -27,80 +43,41 @@ ob_start();
       </div>
     </div>
   </div>
-</div>
+</div>-->
 
-    <div class="site-section bg-light block-13">
-      <div class="container">
-        <div class="row mb-5">
-          <div class="col-md-12 text-center">
-            <h2 class="font-weight-bold text-black">Featured Guests</h2>
-          </div>
-        </div>
-        <div class="nonloop-block-13 owl-carousel">
-
-          <div class="text-center p-3 p-md-5 bg-white">
-            <div class="mb-4">            
-              <img src="public/images/person_1.jpg" alt="Image" class="w-50 mx-auto img-fluid rounded-circle">
-            </div>
-            <div class="">
-              <h3 class="font-weight-light h5">Megan Smith</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, iusto. Aliquam illo, cum sed ea? Ducimus quos, ea?</p>
-            </div>
-          </div>
-
-          <div class="text-center p-3 p-md-5 bg-white">
-            <div class="mb-4">            
-              <img src="public/images/person_2.jpg" alt="Image" class="w-50 mx-auto img-fluid rounded-circle">
-            </div>
-            <div class="">
-              <h3 class="font-weight-light h5">Brooke Cagle</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, iusto. Aliquam illo, cum sed ea? Ducimus quos, ea?</p>
-            </div>
-          </div>
-
-          <div class="text-center p-3 p-md-5 bg-white">
-            <div class="mb-4">            
-              <img src="public/images/person_3.jpg" alt="Image" class="w-50 mx-auto img-fluid rounded-circle">
-            </div>
-            <div class="">
-              <h3 class="font-weight-light h5">Philip Martin</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, iusto. Aliquam illo, cum sed ea? Ducimus quos, ea?</p>
-            </div>
-          </div>
-
-          <div class="text-center p-3 p-md-5 bg-white">
-            <div class="mb-4">            
-              <img src="public/images/person_4.jpg" alt="Image" class="w-50 mx-auto img-fluid rounded-circle">
-            </div>
-            <div class="">
-              <h3 class="font-weight-light h5">Steven Ericson</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, iusto. Aliquam illo, cum sed ea? Ducimus quos, ea?</p>
-            </div>
-          </div>
-
-          <div class="text-center p-3 p-md-5 bg-white">
-            <div class="mb-4">            
-              <img src="public/images/person_5.jpg" alt="Image" class="w-50 mx-auto img-fluid rounded-circle">
-            </div>
-            <div class="">
-              <h3 class="font-weight-light h5">Nathan Dumlao</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, iusto. Aliquam illo, cum sed ea? Ducimus quos, ea?</p>
-            </div>
-          </div>
-
-          <div class="text-center p-3 p-md-5 bg-white">
-            <div class="mb-4">            
-              <img src="public/images/person_6.jpg" alt="Image" class="w-50 mx-auto img-fluid rounded-circle">
-            </div>
-            <div class="">
-              <h3 class="font-weight-light h5">Brook Smith</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Et, iusto. Aliquam illo, cum sed ea? Ducimus quos, ea?</p>
-            </div>
-          </div>
-
-        </div>
+<div class="site-section bg-light block-13">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-md-12 text-center">
+        <!--<h2 class="font-weight-bold text-black">Featured Guests</h2>-->
       </div>
     </div>
+    <div class="nonloop-block-13 owl-carousel">
+      <?php
+        $sql = "SELECT auteurs.id, auteurs.nom, auteurs.prenom, auteurs.statut, auteurs.ville, auteurs.description, auteurs.photo, (SELECT COUNT(fikrs.id) FROM fikrs WHERE fikrs.auteur=auteurs.id) as nombre FROM auteurs";
+        $data = Manager::getMultiplesRecords($sql);
+        //$data = Manager::getData('auteurs', true)['data'];
+        if (is_array($data) || is_object($data)) {
+          foreach ($data as $value) {
+            $statut = Manager::getData('statuts', 'id', $value['statut'])['data'];
+            $ville = Manager::getData('ville', 'id', $value['ville'])['data'];
+          ?>
+          <div class="text-center p-3 p-md-5 bg-white">
+            <div class="mb-4">            
+              <img src="<?= $target.Manager::getData("files", "id", $value['photo'])['data']['file_url']; ?>" alt="<?= $value['nom'] . ' ' . $value['prenom'];?>" class="w-50 mx-auto img-fluid rounded-circle">
+            </div>
+            <div class="">
+              <h3 class="font-weight-light h5"><?= $statut['grade'] . ' ' . $value['nom'] . ' ' . $value['prenom'];?></h3>
+              <div class="text-white mb-3"><span class="text-black-opacity-05"><small>Ville: <?= $ville['titre']?> <span class="sep">/</span>Fikrs: <?= $value['nombre']?></small></span></div>
+              <p><?= $value['description'];?></p>
+            </div>
+          </div>
+          <?php } 
+        }
+      ?>
+    </div>
+  </div>
+</div>
     
     <div class="site-blocks-cover overlay inner-page-cover" style="background-image: url(public/images/hero_bg_1.jpg);" data-aos="fade" data-stellar-background-ratio="0.5">
       <div class="container">

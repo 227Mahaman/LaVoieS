@@ -13,12 +13,14 @@ if (!empty($_GET['p'])) {
         include_once('views/view_fikr.php');
     } elseif ($p == "datas") { //View Datas
         include_once('views/view_datas.php');
-    } elseif ($p == "annonce") { //View Annonce
+    } elseif ($p == "annonce") { //View Article Annonce
         include_once('views/view_annonce.php');
     } elseif ($p == "oulema") { //View Oulema
         include_once('views/view_oulema.php');
     } elseif ($p == "audio") { //View Audio
         include_once('views/view_audio.php');
+    } elseif ($p == "actualite") { //View Article Actualité
+        include_once('views/view_actualite.php');
     } elseif ($p == "contact") { //View Contact
         if($_POST){//Envoi de mail et notification
             include_once('model/mail_nous_contacter.php');

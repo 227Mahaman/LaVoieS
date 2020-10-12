@@ -56,14 +56,13 @@
                 <li class="active">
                   <a href="index.php?p=home">Accueil</a>
                 </li>
-                <!--<li class="has-children">
-                  <a href="#">Dropdown</a>
+                <li class="has-children">
+                  <a href="#">Articles</a>
                   <ul class="dropdown arrow-top">
-                    <li><a href="#">Menu One</a></li>
-                    <li><a href="#">Menu Two</a></li>
-                    <li><a href="#">Menu Three</a></li>
+                    <li><a href="index.php?p=actualite">Actualités</a></li>
+                    <li><a href="index.php?p=annonce">Annonces</a></li>
                   </ul>
-                </li>-->
+                </li>
                 <li><a href="index.php?p=fikr">Fikr</a></li>
                 <li><a href="index.php?p=audio">Audio</a></li>
                 <li><a href="index.php?p=oulema">Oulèmas</a></li>

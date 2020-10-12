@@ -17,6 +17,8 @@ if (!empty($_GET['p'])) {
         include_once('views/view_annonce.php');
     } elseif ($p == "oulema") { //View Oulema
         include_once('views/view_oulema.php');
+    } elseif ($p == "audio") { //View Audio
+        include_once('views/view_audio.php');
     } elseif ($p == "contact") { //View Contact
         if($_POST){//Envoi de mail et notification
             include_once('model/mail_nous_contacter.php');

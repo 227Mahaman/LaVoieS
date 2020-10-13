@@ -83,7 +83,7 @@ if ($_SERVER["SERVER_NAME"] == 'localhost') {
                             <div class="d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
                                 <div class="image" style="background-image: url('<?= $target.Manager::getData("files", "id", $value['photo'])['data']['file_url']; ?>');"></div>
                                 <div class="text">
-                                    <h3 class="font-weight-light"><a href="index.php?p=annonce&id=<?= $value['id']?>"><?= $value['titre']?></a></h3>
+                                    <h3 class="font-weight-light"><a href="index.php?p=article&id=<?= $value['id']?>"><?= $value['titre']?></a></h3>
                                     <div class="text-white mb-3"><span class="text-black-opacity-05"><small>By <?= $value['auteur']?> <span class="sep">/</span> Date: <?= $value['date_event']?> à <?= $value['time_event']?> <span class="sep">/</span>Lieu: <?= $value['lieu']?></small></span></div>
                                     <p><?= $value['description']?></p>
                                 </div>

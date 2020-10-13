@@ -44,7 +44,7 @@
 
           <div class="col-3">
             <!--<h1 class="site-logo"><a href="index.php?p=home" class="h2">IslamNiger<span class="text-success">.</span> </a></h1>-->
-            <a href="index.php?p=home" class="h2"><img src="public/images/logo.png" alt="Logo IslamNiger" class="img-fluid"></a>
+            <a href="index.php?p=home" class="h2"><img src="public/images/logoone1.png" alt="Logo IslamNiger" class="img-fluid"></a>
           </div>
           <div class="col-9">
             <nav class="site-navigation position-relative text-right text-md-right" role="navigation">

@@ -7,6 +7,10 @@ if ($_SERVER["SERVER_NAME"] == 'localhost') {
 } else {
     $target = "http:///admin/";
 }
+$sql1 = "SELECT COUNT(id) as total FROM annonces WHERE type_annonce='Actualité'";
+$actualites = Manager::getMultiplesRecords($sql1);
+$sql2 = "SELECT COUNT(id) as total FROM annonces WHERE type_annonce='Annonce'";
+$annonces = Manager::getMultiplesRecords($sql2);
 ?>
 
 <div class="site-blocks-cover overlay inner-page-cover" style="background-image: url(public/images/voie.jpg);" data-aos="fade" data-stellar-background-ratio="0.5">
@@ -39,38 +43,27 @@ if ($_SERVER["SERVER_NAME"] == 'localhost') {
             <div class="row">
                 <div class="col-lg-3">
                     <div class="featured-user  mb-5 mb-lg-0">
-                        <h3 class="mb-4">Actualités</h3>
+                        <h3 class="mb-4">Articles</h3>
                         <ul class="list-unstyled">
                             <li>
                             <a href="#" class="d-flex align-items-center">
                                 <img src="public/images/person_1.jpg" alt="Image" class="img-fluid mr-2">
                                 <div class="podcaster">
-                                <span class="d-block">Claire Stanford</span>
-                                <span class="small">32,420 podcasts</span>
+                                <span class="d-block">Actualité</span>
+                                <span class="small"><?= $actualites['0']['total'];?> articles</span>
                                 </div>
                             </a>
                             </li>
-                        </ul>
-                        <hr>
-                        <h3 class="mb-4">Fikrs</h3>
-                        <ul class="list-unstyled">
-                          <?php
-                          $data = Manager::getData("cfikr", true)['data'];
-                          if (is_array($data) || is_object($data)) {
-                              foreach ($data as $value) {
-                              ?>
+                            <hr>
                             <li>
-                            <a href="index.php?p=fikrs&id=<?= $value['titre']?>" class="d-flex align-items-center">
+                            <a href="#" class="d-flex align-items-center">
                                 <img src="public/images/person_1.jpg" alt="Image" class="img-fluid mr-2">
                                 <div class="podcaster">
-                                <span class="d-block"><?= $value['titre']?></span>
-                                <span class="small">32,420 podcasts</span>
+                                <span class="d-block">Annonces</span>
+                                <span class="small"><?= $annonces['0']['total'];?> articles</span>
                                 </div>
                             </a>
                             </li>
-                            <?php } 
-                              }
-                          ?>
                         </ul>
                     </div>
                 </div>

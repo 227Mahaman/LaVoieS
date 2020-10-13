@@ -83,17 +83,18 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-4">
-            <h3>About Us</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium animi, odio beatae aspernatur natus recusandae quasi magni eum voluptatem nam!</p>
+            <h3>A propos de Nous</h3>
+            <p>IslamNiger est une plateforme qui  informe les musulmans sur l'actualités, les annonces de conférence, prêche et rend accessibles les audios des prêches, conférences et enseignement avec l'accord des nos Oulémas.</p>
           </div>
           <div class="col-lg-3 mx-auto">
             <h3>Navigation</h3>
             <ul class="list-unstyled">
-              <li><a href="#">Podcasts</a></li>
-              <li><a href="#">Services</a></li>
-              <li><a href="#">About Us</a></li>
-              <li><a href="#">Blog</a></li>
-              <li><a href="#">Contact</a></li>
+              <li><a href="index.php?p=">Accueil</a></li>
+              <li><a href="index.php?p=actualite">Actualité</a></li>
+              <li><a href="index.php?p=annonce">Annonce</a></li>
+              <li><a href="index.php?p=fikr">Fikr</a></li>
+              <li><a href="index.php?p=audio">Audio</a></li>
+              <li><a href="index.php?p=contact">Contact</a></li>
             </ul>
           </div>
           <div class="col-lg-4">
@@ -108,9 +109,9 @@
 
         <div class="row pt-5 mt-5 text-center">
           <div class="col-md-12">
-            <p>
+            <p>Copyright © 1441 - 2020 IslamNiger .
               <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-              Copyright &copy;<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
+              <!--Copyright &copy;<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>-->
               <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
             </p>
           </div>

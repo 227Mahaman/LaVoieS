@@ -21,6 +21,8 @@ if (!empty($_GET['p'])) {
         include_once('views/view_audio.php');
     } elseif ($p == "actualite") { //View Article Actualité
         include_once('views/view_actualite.php');
+    } elseif ($p == "article") { //View Single Article
+        include_once('views/view_article.php');
     } elseif ($p == "contact") { //View Contact
         if($_POST){//Envoi de mail et notification
             include_once('model/mail_nous_contacter.php');

@@ -25,7 +25,7 @@ if($currentPage <= 0){
  * @var count variable
  * contient le nombre total d'annonce
  */
-$count = Manager::Count('annonces', 'id');
+//$count = Manager::Count('annonces', 'id');
 /**
  * @var perPage variable
  * représentant le nombre d'annonce à afficher par page
@@ -37,7 +37,7 @@ $perPage = 3;
  * @param perPage
  * le nombre de page 
  */
-$pages = ceil($count['total']/$perPage);
+$pages = ceil($annonces['0']['total']/$perPage);
 if ($currentPage > $pages){
     throw new Exception("Cette page n'existe pas");
 }

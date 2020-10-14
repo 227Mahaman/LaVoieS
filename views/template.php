@@ -20,6 +20,7 @@
   <link rel="stylesheet" href="public/css/aos.css">
 
   <link rel="stylesheet" href="public/css/style.css">
+  <link rel="stylesheet" href="public/css/font-awesome.min.css" type="text/css">
 
 </head>
 <body>

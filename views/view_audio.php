@@ -26,7 +26,7 @@ if ($_SERVER["SERVER_NAME"] == 'localhost') {
      * @var perPage variable
      * représentant le nombre d'annonce à afficher par page
      */
-    $perPage = 6;
+    $perPage = 3;
     /**
      * @var pages variable
      * @param count
@@ -139,24 +139,14 @@ $data = Manager::getMultiplesRecords($sql);
           <div class="col-md-12 text-center">
             <div class="site-block-27">
               <ul>
-              <?php if($currentPage > 1):?>
-                <?php
-                if($currentPage > 2) $link .= '&page' . ($currentPage - 1);
-                ?>
-                    <!--<a href="<?//= $link ?>" class="btn btn-success">&laquo; Page précédente</a>-->
-                    <li><a href="<?= $link ?>" class="icon-keyboard_arrow_right">&laquo; <?= $currentPage - 1 ?></a></li>
+                <?php if($currentPage > 1):?>
+                  <?php if($currentPage > 2) $link .= '&page=' . ($currentPage - 1);?>
+                  <li><a href="<?= $link ?>" class="icon-keyboard_arrow_right">&laquo; <?= $currentPage - 1 ?></a></li>
                 <?php endif; ?>
-              <?php if($currentPage < $pages):?>
+                <li class="active"><span><?= $currentPage; ?></span></li>
+                <?php if($currentPage < $pages):?>
                   <li><a href="index.php?p=audio&page=<?= $currentPage + 1 ?>" class="icon-keyboard_arrow_left"><?= $currentPage + 1 ?> &raquo;</a></li>
-                  <!--<a href="index.php?p=audio&page=<?//= $currentPage + 1 ?>" class="btn btn-success ml-auto">Page suivante &raquo;</a>-->
-              <?php endif; ?>
-                <!--<li><a href="#" class="icon-keyboard_arrow_left"></a></li>
-                <li class="active"><span>1</span></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#" class="icon-keyboard_arrow_right"></a></li>-->
+                <?php endif; ?>
               </ul>
             </div>
           </div>

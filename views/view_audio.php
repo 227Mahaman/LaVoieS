@@ -8,44 +8,44 @@ if ($_SERVER["SERVER_NAME"] == 'localhost') {
     $target = "http://admin/";
 }
 /**
-     * @var currentPage variable
-     * représente la page courante
-     * si elle est égale à 0, on lui attribue 1
-     */
-    $currentPage = (int)($_GET['page'] ?? 1);
-    if($currentPage <= 0){
-        throw new Exception("Numéro de page invalide");
-        
-    }
-    /**
-     * @var count variable
-     * contient le nombre total d'annonce
-     */
-    $count = Manager::Count('datas', 'id');
-    /**
-     * @var perPage variable
-     * représentant le nombre d'annonce à afficher par page
-     */
-    $perPage = 3;
-    /**
-     * @var pages variable
-     * @param count
-     * @param perPage
-     * le nombre de page 
-     */
-    $pages = ceil($count['total']/$perPage);
-    if ($currentPage > $pages){
-        throw new Exception("Cette page n'existe pas");
-    }
-    /**
-     * @var offset variable
-     */
-    $offset = $perPage * ($currentPage - 1);
-    /**
-     * @var link variable
-     * lien de pagination
-     */
-    $link = "index.php?p=audio";
+ * @var currentPage variable
+ * représente la page courante
+ * si elle est égale à 0, on lui attribue 1
+ */
+$currentPage = (int)($_GET['page'] ?? 1);
+if($currentPage <= 0){
+    throw new Exception("Numéro de page invalide");
+    
+}
+/**
+ * @var count variable
+ * contient le nombre total d'annonce
+ */
+$count = Manager::Count('datas', 'id');
+/**
+ * @var perPage variable
+ * représentant le nombre d'annonce à afficher par page
+ */
+$perPage = 3;
+/**
+ * @var pages variable
+ * @param count
+ * @param perPage
+ * le nombre de page 
+ */
+$pages = ceil($count['total']/$perPage);
+if ($currentPage > $pages){
+    throw new Exception("Cette page n'existe pas");
+}
+/**
+ * @var offset variable
+ */
+$offset = $perPage * ($currentPage - 1);
+/**
+ * @var link variable
+ * lien de pagination
+ */
+$link = "index.php?p=audio";
 $sql = "SELECT datas.id, datas.titre, datas.date, datas.fikr, datas.chemin, (SELECT fikrs.photo FROM fikrs WHERE datas.fikr=fikrs.id) as path_url FROM datas LIMIT $perPage OFFSET $offset";
 $data = Manager::getMultiplesRecords($sql);
 ?>

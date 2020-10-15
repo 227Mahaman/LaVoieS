@@ -3,10 +3,49 @@ $title = "Nos Fikrs";
 ob_start();
 $target = '';
 if ($_SERVER["SERVER_NAME"] == 'localhost') {
-    $target = "http://localhost/IslamNiger/";
+  $target = "http://localhost/IslamNiger/";
 } else {
-    $target = "http:///admin/";
+  $target = "http:///admin/";
 }
+/**
+ * @var currentPage variable
+ * représente la page courante
+ * si elle est égale à 0, on lui attribue 1
+ */
+$currentPage = (int)($_GET['page'] ?? 1);
+if($currentPage <= 0){
+    throw new Exception("Numéro de page invalide");
+    
+}
+/**
+ * @var count variable
+ * contient le nombre total d'annonce
+ */
+$count = Manager::Count('fikrs', 'id');
+/**
+ * @var perPage variable
+ * représentant le nombre d'annonce à afficher par page
+ */
+$perPage = 3;
+/**
+ * @var pages variable
+ * @param count
+ * @param perPage
+ * le nombre de page 
+ */
+$pages = ceil($count['total']/$perPage);
+if ($currentPage > $pages){
+    throw new Exception("Cette page n'existe pas");
+}
+/**
+ * @var offset variable
+ */
+$offset = $perPage * ($currentPage - 1);
+/**
+ * @var link variable
+ * lien de pagination
+ */
+$link = "index.php?p=fikr";
 ?>
 <div class="site-blocks-cover inner-page-cover bg-light mb-5">
   <div class="container">
@@ -114,12 +153,6 @@ if ($_SERVER["SERVER_NAME"] == 'localhost') {
           <h3 class="mb-4">Catégorie de Fikr</h3>
           <ul class="list-unstyled">
             <?php
-            $target = '';
-            if ($_SERVER["SERVER_NAME"] == 'localhost') {
-                $target = "http://localhost/laVoieDesSalaf";
-            } else {
-                $target = "http:///admin/";
-            }
               $sql = "SELECT cfikr.id, cfikr.titre, (SELECT COUNT(fikrs.id) FROM fikrs WHERE fikrs.cfikr=cfikr.id) as nombre FROM cfikr";
               $data = Manager::getMultiplesRecords($sql);
             //$data = Manager::getData("cfikr", true)['data'];
@@ -146,13 +179,14 @@ if ($_SERVER["SERVER_NAME"] == 'localhost') {
           <div class="col-md-12 text-center">
             <div class="site-block-27">
               <ul>
-                <li><a href="#" class="icon-keyboard_arrow_left"></a></li>
-                <li class="active"><span>1</span></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#" class="icon-keyboard_arrow_right"></a></li>
+                <?php if($currentPage > 1):?>
+                  <?php if($currentPage > 2) $link .= '&page=' . ($currentPage - 1);?>
+                  <li><a href="<?= $link ?>" class="icon-keyboard_arrow_right">&laquo; <?= $currentPage - 1 ?></a></li>
+                <?php endif; ?>
+                <li class="active"><span><?= $currentPage; ?></span></li>
+                <?php if($currentPage < $pages):?>
+                  <li><a href="index.php?p=fikr&page=<?= $currentPage + 1 ?>" class="icon-keyboard_arrow_left"><?= $currentPage + 1 ?> &raquo;</a></li>
+                <?php endif; ?>
               </ul>
             </div>
           </div>

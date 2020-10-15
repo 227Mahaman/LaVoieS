@@ -22,40 +22,40 @@ $oulema = Manager::getData('auteurs', 'id', $fikr['auteur'])['data'];
  * représente la page courante
  * si elle est égale à 0, on lui attribue 1
  */
-$currentPage = (int)($_GET['page'] ?? 1);
-if($currentPage <= 0){
-    throw new Exception("Numéro de page invalide");
+// $currentPage = (int)($_GET['page'] ?? 1);
+// if($currentPage <= 0){
+//     throw new Exception("Numéro de page invalide");
     
-}
+// }
 /**
  * @var count variable
  * contient le nombre total d'annonce
  */
-$count = Manager::Count('datas', 'id');
+//$count = Manager::Count('datas', 'id');
 /**
  * @var perPage variable
  * représentant le nombre d'annonce à afficher par page
  */
-$perPage = 3;
+//$perPage = 3;
 /**
  * @var pages variable
  * @param count
  * @param perPage
  * le nombre de page 
  */
-$pages = ceil($count['total']/$perPage);
-if ($currentPage > $pages){
-    throw new Exception("Cette page n'existe pas");
-}
+// $pages = ceil($count['total']/$perPage);
+// if ($currentPage > $pages){
+//     throw new Exception("Cette page n'existe pas");
+// }
 /**
  * @var offset variable
  */
-$offset = $perPage * ($currentPage - 1);
+//$offset = $perPage * ($currentPage - 1);
 /**
  * @var link variable
  * lien de pagination
  */
-$link = "index.php?p=datas";
+//$link = "index.php?p=datas";
 ?>
 <div class="site-blocks-cover inner-page-cover bg-light mb-5">
   <div class="container">
@@ -153,14 +153,14 @@ $link = "index.php?p=datas";
           <div class="col-md-12 text-center">
             <div class="site-block-27">
               <ul>
-                <?php if($currentPage > 1):?>
-                  <?php if($currentPage > 2) $link .= '&page=' . ($currentPage - 1);?>
-                  <li><a href="<?= $link ?>" class="icon-keyboard_arrow_right">&laquo; <?= $currentPage - 1 ?></a></li>
-                <?php endif; ?>
-                <li class="active"><span><?= $currentPage; ?></span></li>
-                <?php if($currentPage < $pages):?>
-                  <li><a href="index.php?p=datas&page=<?= $currentPage + 1 ?>" class="icon-keyboard_arrow_left"><?= $currentPage + 1 ?> &raquo;</a></li>
-                <?php endif; ?>
+                <?//php if($currentPage > 1):?>
+                  <?//php if($currentPage > 2) $link .= '&page=' . ($currentPage - 1);?>
+                  <li><a href="<?//= $link ?>" class="icon-keyboard_arrow_right">&laquo; <?//= $currentPage - 1 ?></a></li>
+                <?//php endif; ?>
+                <li class="active"><span><?//= $currentPage; ?></span></li>
+                <?//php if($currentPage < $pages):?>
+                  <li><a href="index.php?p=datas&page=<?//= $currentPage + 1 ?>" class="icon-keyboard_arrow_left"><?//= $currentPage + 1 ?> &raquo;</a></li>
+                <?//php endif; ?>
               </ul>
             </div>
           </div>

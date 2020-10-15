@@ -9,7 +9,7 @@ if ($_SERVER["SERVER_NAME"] == 'localhost') {
 }
 if(isset($_GET['id'])){
   $id=$_GET['id'];
-  $annonces = Manager::getData("annonces","id", $id)['data'];
+  $annonce = Manager::getData("annonces","id", $id)['data'];
 }
 $sql1 = "SELECT COUNT(id) as total FROM annonces WHERE type_annonce='Actualité'";
 $actualites = Manager::getMultiplesRecords($sql1);
@@ -17,13 +17,13 @@ $sql2 = "SELECT COUNT(id) as total FROM annonces WHERE type_annonce='Annonce'";
 $annonces = Manager::getMultiplesRecords($sql2);
 ?>
 
-<div class="site-blocks-cover overlay inner-page-cover" style="background-image: url('<?= $target.Manager::getData("files", "id", $annonces['photo'])['data']['file_url']; ?>');" data-aos="fade" data-stellar-background-ratio="0.5">
+<div class="site-blocks-cover overlay inner-page-cover" style="background-image: url('<?= $target.Manager::getData("files", "id", $annonce['photo'])['data']['file_url']; ?>');" data-aos="fade" data-stellar-background-ratio="0.5">
       <div class="container">
         <div class="row align-items-center justify-content-center text-center">
 
           <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
-            <h1 class="text-white"><?= $annonces['titre']?></h1>
-            <a href="index.php?p=home">Accueil</a><span class="mx-2 text-white">&bullet;</span> <span class="text-white"><?= $annonces['date_event']?> à <?= $annonces['time_event']?>.</span>
+            <h1 class="text-white"><?= $annonce['titre']?></h1>
+            <a href="index.php?p=home">Accueil</a><span class="mx-2 text-white">&bullet;</span> <span class="text-white"><?= $annonce['date_event']?> à <?= $annonce['time_event']?>.</span>
           </div>
         </div>
       </div>
@@ -64,8 +64,8 @@ $annonces = Manager::getMultiplesRecords($sql2);
                       <!--<div class="image" style="background-image: url('<?//= $target.Manager::getData("files", "id", $annonces['photo'])['data']['file_url']; ?>');"></div>-->
                       <div class="text">
                           <!--<h3 class="font-weight-light"><a href="index.php?p=annonce&id=<//?= $annonces['id']?>"><?//= $annonces['titre']?></a></h3>-->
-                          <div class="text-white mb-3"><h3><span class="text-black-opacity-05"><small>By <?= $annonces['auteur']?> <span class="sep">/</span>Lieu: <?= $annonces['lieu']?></small></span></h3></div>
-                          <p><?= $annonces['description']?></p>
+                          <div class="text-white mb-3"><h3><span class="text-black-opacity-05"><small>By <?= $annonce['auteur']?> <span class="sep">/</span>Lieu: <?= $annonce['lieu']?></small></span></h3></div>
+                          <p><?= $annonce['description']?></p>
                       </div>
                   </div>
                 </div>

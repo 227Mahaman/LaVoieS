@@ -54,7 +54,6 @@ $data = Manager::getMultiplesRecords($sql);
     <div class="row align-items-center justify-content-center text-center">
 
       <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
-        <!--<h1 class="text-white">Au Nom d'ALLAH CLEMENT ET MISERICORDIEUX</h1>-->
         <a href="index.php?p=home">Accueil</a><span class="mx-2 text-white">&bullet;</span> <span class="text-white">A lire et à télécharger à votre guise !</span>
       </div>
     </div>

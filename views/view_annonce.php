@@ -52,17 +52,17 @@ $offset = $perPage * ($currentPage - 1);
 $link = "index.php?p=annonce";
 ?>
 
-<div class="site-blocks-cover overlay inner-page-cover" style="background-image: url('public/images/voie.jpg');" data-aos="fade" data-stellar-background-ratio="0.5">
-      <div class="container">
-        <div class="row align-items-center justify-content-center text-center">
+<div class="site-blocks-cover overlay inner-page-cover" style="background-image: url('public/images/voie4.jpg');" data-aos="fade" data-stellar-background-ratio="0.5">
+    <div class="container">
+    <div class="row align-items-center justify-content-center text-center">
 
-          <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
-            <h1 class="text-white">Annonces</h1>
-            <a href="index.php?p=home">Accueil</a><span class="mx-2 text-white">&bullet;</span> <span class="text-white">Article.</span>
-          </div>
+        <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
+        <h1 class="text-white">Annonces</h1>
+        <a href="index.php?p=home">Accueil</a><span class="mx-2 text-white">&bullet;</span> <span class="text-white">Article.</span>
         </div>
-      </div>
     </div>
+    </div>
+</div>
     
 
     <div class="site-section">

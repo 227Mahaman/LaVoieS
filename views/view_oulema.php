@@ -69,7 +69,7 @@ if ($_SERVER["SERVER_NAME"] == 'localhost') {
             <div class="">
               <h3 class="font-weight-light h5"><?= $statut['grade'] . ' ' . $value['nom'] . ' ' . $value['prenom'];?></h3>
               <div class="text-white mb-3"><span class="text-black-opacity-05"><small>Ville: <?= $ville['titre']?> <span class="sep">/</span>Fikrs: <?= $value['nombre']?></small></span></div>
-              <p><?= $value['description'];?></p>
+              <p><?= substr($value['description'], 0, 125) . '...';?></p>
             </div>
           </div>
           <?php } 

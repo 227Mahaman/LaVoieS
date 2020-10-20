@@ -148,8 +148,7 @@ $data = Manager::getMultiplesRecords($sql);
                     ?>
                     <li class="active"><span><?= $i; ?></span></li>
                     <?php
-                  } else {
-                    ?>
+                  } else {?>
                     <li ><a href="index.php?p=audio&page=<?= $i; ?>"><span><?= $i; ?></span></a></li>
                     <?php  
                   }

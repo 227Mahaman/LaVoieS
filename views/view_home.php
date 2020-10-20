@@ -69,7 +69,9 @@ $annonces = Manager::getMultiplesRecords($sql2);
                 </div>
                 <div class="col-lg-9">
                     <?php
-                        $data = Manager::getData("annonces", true)['data'];
+                      $sql = "SELECT * FROM annonces ORDER BY date_annonce DESC LIMIT 8";
+                      $data = Manager::getMultiplesRecords($sql);
+                        //$data = Manager::getData("annonces", true)['data'];
                         if (is_array($data) || is_object($data)) {
                             foreach ($data as $value) {
                             ?>

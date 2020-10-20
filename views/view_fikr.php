@@ -182,11 +182,21 @@ $link = "index.php?p=fikr";
               <ul>
                 <?php if($currentPage > 1):?>
                   <?php if($currentPage > 2) $link .= '&page=' . ($currentPage - 1);?>
-                  <li><a href="<?= $link ?>" class="icon-keyboard_arrow_right">&laquo; <?= $currentPage - 1 ?></a></li>
+                  <li><a href="<?= $link ?>" class="icon-keyboard_arrow_right">&laquo;</a></li>
                 <?php endif; ?>
-                <li class="active"><span><?= $currentPage; ?></span></li>
+                <?php
+                for ($i = 1; $i < $pages; $i++) {
+                  if ($i == $currentPage) {
+                    ?>
+                    <li class="active"><span><?= $i; ?></span></li>
+                    <?php
+                  } else {?>
+                    <li><a href="index.php?p=fikr&page=<?= $i; ?>"><span><?= $i; ?></span></a></li>
+                    <?php  
+                  }
+                }?>
                 <?php if($currentPage < $pages):?>
-                  <li><a href="index.php?p=fikr&page=<?= $currentPage + 1 ?>" class="icon-keyboard_arrow_left"><?= $currentPage + 1 ?> &raquo;</a></li>
+                  <li><a href="index.php?p=fikr&page=<?= $currentPage + 1 ?>" class="icon-keyboard_arrow_left">&raquo;</a></li>
                 <?php endif; ?>
               </ul>
             </div>

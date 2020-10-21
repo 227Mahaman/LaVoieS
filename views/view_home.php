@@ -14,16 +14,16 @@ $annonces = Manager::getMultiplesRecords($sql2);
 ?>
 
 <div class="site-blocks-cover overlay inner-page-cover" style="background-image: url(public/images/voie4.jpg);" data-aos="fade" data-stellar-background-ratio="0.5">
-      <div class="container">
-        <div class="row align-items-center justify-content-center text-center">
+  <div class="container">
+    <div class="row align-items-center justify-content-center text-center">
 
-          <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
-            <!--<h1 class="text-white">Au Nom d'ALLAH CLEMENT ET MISERICORDIEUX</h1>-->
-            <a href="index.php?p=home">Accueil</a><span class="mx-2 text-white">&bullet;</span> <span class="text-white">Que le salut soit sur notre Prophète Mohammed et sa famille.</span>
-          </div>
-        </div>
+      <div class="col-md-6" data-aos="fade-up" data-aos-delay="400">
+        <!--<h1 class="text-white">Au Nom d'ALLAH CLEMENT ET MISERICORDIEUX</h1>-->
+        <a href="index.php?p=home">Accueil</a><span class="mx-2 text-white">&bullet;</span> <span class="text-white">Que le salut soit sur notre Prophète Mohammed et sa famille.</span>
       </div>
-    </div> 
+    </div>
+  </div>
+</div> 
 <!--<div class="container pt-5 hero">
   <div class="row align-items-center text-center text-md-left">
     <div class="col-lg-4">

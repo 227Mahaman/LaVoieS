@@ -65,7 +65,7 @@
                     <li><a href="index.php?p=annonce">Annonces</a></li>
                   </ul>
                 </li>
-                <li><a href="index.php?p=fikr">Fikr</a></li>
+                <li><a href="index.php?p=fikr">Dourous</a></li>
                 <li><a href="index.php?p=audio">Audio</a></li>
                 <li><a href="index.php?p=oulema">Oulèmas</a></li>
                 <li><a href="index.php?p=contact">Contact</a></li>

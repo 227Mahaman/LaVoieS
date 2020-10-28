@@ -71,8 +71,8 @@ $data = Manager::getMultiplesRecords($sql);
                 <div class="d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
                     <div class="image" style="background-image: url('<?= $target.Manager::getData("files", "id", $value['path_url'])['data']['file_url']; ?>');"></div>
                     <div class="text">
-                        <h3 class="font-weight-light"><a href="index.php?p=datas&fikr=<?= $value['id']?>"><?= $value['titre']?>, <?= $fikr['titre'];?></a></h3>
-                        <div class="text-white mb-3"><span class="text-black-opacity-05"><small>Publié le <?= $value['date']?></small><span class="sep">/</span> <small>Livre: <?= $fikr['livre'];?></small> <span class="sep">/</span> </span></div>
+                        <h3 class="font-weight-light"><a href="index.php?p=datas&fikr=<?= $value['id']?>"><?= $value['titre']?></a></h3>
+                        <div class="text-white mb-3"><span class="text-black-opacity-05"><small>Publié le <?= $value['date']?></small><span class="sep">/</span> <small>Livre: <?= $fikr['livre'];?></small> <span class="sep">/</span><small> Dourous: <?= $fikr['titre'];?></small> </span></div>
                         <div class="text-white mb-3"> <a href="<?= $target.Manager::getData("files", "id", $value['chemin'])['data']['file_url'] ?>" download="<?= $value['titre']?>"><i class="fa fa-car"></i>Télécharger</a></span></div>
                         <div class="player">
                             <audio id="player2" preload="metadata" controls style="max-width: 100%">

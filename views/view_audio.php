@@ -26,7 +26,7 @@ $count = Manager::Count('datas', 'id');
  * @var perPage variable
  * représentant le nombre d'annonce à afficher par page
  */
-$perPage = 3;
+$perPage = 4;
 /**
  * @var pages variable
  * @param count
@@ -46,7 +46,7 @@ $offset = $perPage * ($currentPage - 1);
  * lien de pagination
  */
 $link = "index.php?p=audio";
-$sql = "SELECT datas.id, datas.titre, datas.date, datas.fikr, datas.chemin, (SELECT fikrs.photo FROM fikrs WHERE datas.fikr=fikrs.id) as path_url FROM datas LIMIT $perPage OFFSET $offset";
+$sql = "SELECT datas.id, datas.titre, datas.date, datas.fikr, datas.chemin, fikrs.id as idFikr, fikrs.photo as path_url FROM datas, fikrs WHERE datas.fikr=fikrs.id GROUP BY idFikr LIMIT $perPage OFFSET $offset";
 $data = Manager::getMultiplesRecords($sql);
 ?>
 <div class="site-blocks-cover overlay inner-page-cover" style="background-image: url(public/images/voie4.jpg);" data-aos="fade" data-stellar-background-ratio="0.5">
@@ -66,22 +66,48 @@ $data = Manager::getMultiplesRecords($sql);
         <?php
             if (is_array($data) || is_object($data)) {
                 foreach ($data as $value) {
+                  //$sql = "SELECT datas.id, datas.titre, datas.date, datas.fikr, datas.chemin, fikrs.id idFikr, fikrs.photo as path_url, fikrs.titre, fikrs.livre, fikrs.langue, fikrs.ville FROM datas, fikrs WHERE datas.fikr=fikrs.id AND fikrs.id=? AND datas.id!=? LIMIT 2";
+                  //$fikr = Manager::getMultiplesRecords($sql, [$value['fikr'], $value['id']]);
                   $fikr = Manager::getData('fikrs', 'id', $value['fikr'])['data'];
                   $langue = Manager::getData('langues', 'id', $value['fikr'])['data'];
                   $ville = Manager::getData('ville', 'id', $fikr['ville'])['data'];
+                  // $langue = Manager::getData('langues', 'id', $value['fikr'])['data'];
+                  // $ville = Manager::getData('ville', 'id', $fikr['ville'])['data'];
                 ?>
-                <div class="d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
-                    <div class="image" style="background-image: url('<?= $target.Manager::getData("files", "id", $value['path_url'])['data']['file_url']; ?>');"></div>
+                <div class="row">
+                  <div class="d-block d-md-flex podcast-entry bg-white mb-5 col-lg-8" data-aos="fade-up">
+                    <div class="image"  style="width: 150px; height: 150px; background-image: url('<?= $target.Manager::getData("files", "id", $value['path_url'])['data']['file_url']; ?>');"></div>
                     <div class="text">
-                        <h3 class="font-weight-light"><a href="index.php?p=datas&fikr=<?= $value['id']?>"><?= $value['titre']?></a></h3>
-                        <div class="text-white mb-3"><span class="text-black-opacity-05"><small>Publié le <?= $value['date']?></small><span class="sep">/</span> <small><a href="index.php?p=audio&langue=<?= $langue['id'];?>">#<?= $langue['titre'];?></small><span class="sep">/</span><small><a href="index.php?p=fikr&id=<?= $fikr['id'];?>">#<?= $fikr['titre'];?></a></small> <span class="sep">/</span><small><a href="index.php?p=audio&ville=<?= $ville['id'];?>">#<?= $ville['titre'];?></a></small> </span></div>
-                        <div class="text-white mb-3"> <a href="<?= $target.Manager::getData("files", "id", $value['chemin'])['data']['file_url'] ?>" download="<?= $value['titre']?>"><i class="fa fa-car"></i>Télécharger</a></span></div>
-                        <div class="player">
-                            <audio id="player2" preload="metadata" controls style="max-width: 100%">
-                            <source src="<?= $target.Manager::getData("files", "id", $value['chemin'])['data']['file_url'] ?>" type="audio/mp3">
-                            </audio>
-                        </div>
+                      <h6 class="font-weight-light"><a href="index.php?p=datas&fikr=<?= $value['id']?>"><?= $value['titre']?></a></h6>
+                      <div class="text-white mb-3"><span class="text-black-opacity-05"><small>Publié le <?= $value['date']?></small><span class="sep">/</span> <small><a href="index.php?p=audio&langue=<?= $langue['id'];?>">#<?= $langue['titre'];?></small><span class="sep">/</span><small><a href="index.php?p=fikr&id=<?= $fikr['id'];?>">#<?= $fikr['titre'];?></a></small> <span class="sep">/</span><small><a href="index.php?p=audio&ville=<?= $ville['id'];?>">#<?= $ville['titre'];?></a></small> </span></div>
+                      <div class="text-white mb-3"> <a href="<?= $target.Manager::getData("files", "id", $value['chemin'])['data']['file_url'] ?>" download="<?= $value['titre']?>"><i class="fa fa-car"></i>Télécharger</a></span></div>
+                      <div class="player">
+                        <audio id="player2" preload="metadata" controls style="max-width: 100%">
+                          <source src="<?= $target.Manager::getData("files", "id", $value['chemin'])['data']['file_url'] ?>" type="audio/mp3">
+                        </audio>
+                      </div>
                     </div>
+                  </div>
+                  <div class="d-block d-md-flex podcast-entry bg-white mb-5 col-lg-4" data-aos="fade-up">
+                    <div class="player">
+                      <?php  
+                        // $sql = "SELECT datas.id, datas.titre, datas.date, datas.fikr, datas.chemin, fikrs.id idFikr, fikrs.photo as path_url FROM datas, fikrs WHERE datas.fikr=fikrs.id AND datas.id!=? LIMIT 2";
+                        // $fikr = Manager::getMultiplesRecords($sql, [$value['id']]);
+                        $sql = "SELECT * FROM datas WHERE datas.fikr=? AND datas.id!=? LIMIT 2";
+                        $fikr = Manager::getMultiplesRecords($sql, [$value['fikr'], $value['id']]);
+                        //var_dump($data);die;
+                        if (is_array($fikr) || is_object($fikr)) {
+                          foreach ($fikr as $value) {?>
+                          <br>
+                        <audio id="player2" preload="metadata" controls style="max-width: 100%">
+                          <source src="<?= $target.Manager::getData("files", "id", $value['chemin'])['data']['file_url']; ?>" type="audio/mp3">
+                        </audio>
+                        <br>
+                        <?php } 
+                      }?>
+                    </div>
+                      
+                  </div>
                 </div>
                 <?php } 
             }

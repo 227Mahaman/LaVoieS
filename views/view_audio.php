@@ -90,7 +90,7 @@ $data = Manager::getMultiplesRecords($sql);
                 ?>
                 <div class="row">
                   <div class="d-block d-md-flex podcast-entry bg-white mb-5 col-lg-8" data-aos="fade-up">
-                    <div class="image"  style="width: 150px; height: 150px; background-image: url('<?= $target.Manager::getData("files", "id", $value['path_url'])['data']['file_url']; ?>');"></div>
+                    <div class="image"  style="width: 48%; height: 100%; background-image: url('<?= $target.Manager::getData("files", "id", $value['path_url'])['data']['file_url']; ?>');"></div>
                     <div class="text">
                       <h6 class="font-weight-light"><a href="index.php?p=datas&fikr=<?= $value['id']?>"><?= $value['titre']?></a></h6>
                       <div class="text-white mb-3"><span class="text-black-opacity-05"><small>Publié le <?= $value['date']?></small><span class="sep">/</span> <small><a href="index.php?p=audio&langue=<?= $langue['id'];?>">#<?= $langue['titre'];?></small><span class="sep">/</span><small><a href="index.php?p=audio&fikr=<?= $fikr['id'];?>">#<?= $fikr['titre'];?></a></small> <span class="sep">/</span><small><a href="index.php?p=audio&ville=<?= $ville['id'];?>">#<?= $ville['titre'];?></a></small> </span></div>
@@ -102,8 +102,9 @@ $data = Manager::getMultiplesRecords($sql);
                       </div>
                     </div>
                   </div>
-                  <div class="d-block d-md-flex podcast-entry bg-white mb-5 col-lg-4" data-aos="fade-up">
-                    <div class="player">
+                  <div class="col-lg-4">
+                  
+                    <div class="row">
                       <?php  
                         // $sql = "SELECT datas.id, datas.titre, datas.date, datas.fikr, datas.chemin, fikrs.id idFikr, fikrs.photo as path_url FROM datas, fikrs WHERE datas.fikr=fikrs.id AND datas.id!=? LIMIT 2";
                         // $fikr = Manager::getMultiplesRecords($sql, [$value['id']]);
@@ -112,11 +113,17 @@ $data = Manager::getMultiplesRecords($sql);
                         //var_dump($data);die;
                         if (is_array($fikr) || is_object($fikr)) {
                           foreach ($fikr as $value) {?>
-                          <br>
-                        <audio id="player2" preload="metadata" controls style="max-width: 100%">
+                          
+                        
+                        <div class="d-block podcast-entry bg-white mb-5 col-lg-12" data-aos="fade-up">
+                        <h6 class="font-weight-light"><a href="index.php?p=datas&fikr=<?= $value['id']?>"><?= $value['titre']?></a></h6>
+                        <div class="player">
+                          <audio id="player2" preload="metadata" controls style="width: 100% !important">
                           <source src="<?= $target.Manager::getData("files", "id", $value['chemin'])['data']['file_url']; ?>" type="audio/mp3">
                         </audio>
-                        <br>
+                          </div>
+                        </div>
+                       
                         <?php } 
                       }?>
                     </div>

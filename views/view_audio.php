@@ -76,7 +76,7 @@ $data = Manager::getMultiplesRecords($sql);
 <div class="site-section">
   <div class="container">
     <div class="row">
-      <div class="col-lg-9">
+      <div class="col-lg-10">
         <?php
             if (is_array($data) || is_object($data)) {
                 foreach ($data as $value) {
@@ -134,10 +134,10 @@ $data = Manager::getMultiplesRecords($sql);
             }
         ?>
       </div>
-      <div class="col-lg-3">
+      <div class="col-lg-2">
         <div class="featured-user  mb-5 mb-lg-0">
           <div class="row">
-            <div class="col-lg-6">
+            <!-- <div class="col-lg-6">
               <h3 class="mb-4">Langues</h3>
               <ul class="list-unstyled">
                 <?php
@@ -149,7 +149,7 @@ $data = Manager::getMultiplesRecords($sql);
                       ?>
                     <li>
                       <a href="index.php?p=audio&langue=<?= $value['id']?>" class="d-flex align-items-center">
-                        <!--<img src="public/images/person_1.jpg" alt="Image" class="img-fluid mr-2">-->
+                        <img src="public/images/person_1.jpg" alt="Image" class="img-fluid mr-2">
                         <div class="podcaster">
                           <span class="d-block"><?= $value['titre']?></span>
                           <span class="small"><?= $value['nombre']?> fikrs</span>
@@ -160,7 +160,7 @@ $data = Manager::getMultiplesRecords($sql);
                   }
                 ?>
               </ul>
-            </div>
+            </div> -->
             <div class="col-lg-6">
               <h3 class="mb-4">Catégorie de Dourous</h3>
               <ul class="list-unstyled">

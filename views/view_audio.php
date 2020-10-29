@@ -46,7 +46,21 @@ $offset = $perPage * ($currentPage - 1);
  * lien de pagination
  */
 $link = "index.php?p=audio";
-$sql = "SELECT datas.id, datas.titre, datas.date, datas.fikr, datas.chemin, fikrs.id as idFikr, fikrs.photo as path_url FROM datas, fikrs WHERE datas.fikr=fikrs.id GROUP BY idFikr LIMIT $perPage OFFSET $offset";
+if(isset($_GET['langue'])){//Filtre by langue
+  $langue = $_GET['langue'];
+  $sql = "SELECT datas.id, datas.titre, datas.date, datas.fikr, datas.chemin, fikrs.id as idFikr, fikrs.photo as path_url, fikrs.livre, fikrs.langue, fikrs.ville FROM datas, fikrs WHERE datas.fikr=fikrs.id AND fikrs.langue='$langue' GROUP BY idFikr LIMIT $perPage OFFSET $offset";
+} elseif(isset($_GET['category'])){//Filtre by categorie
+  $category = $_GET['category'];
+  $sql = "SELECT datas.id, datas.titre, datas.date, datas.fikr, datas.chemin, fikrs.id as idFikr, fikrs.photo as path_url, fikrs.livre, fikrs.langue, fikrs.ville FROM datas, fikrs WHERE datas.fikr=fikrs.id AND fikrs.cfikr='$category' GROUP BY idFikr LIMIT $perPage OFFSET $offset";
+} elseif(isset($_GET['ville'])){//Filtre by ville
+  $ville = $_GET['ville'];
+  $sql = "SELECT datas.id, datas.titre, datas.date, datas.fikr, datas.chemin, fikrs.id as idFikr, fikrs.photo as path_url, fikrs.livre, fikrs.langue, fikrs.ville FROM datas, fikrs WHERE datas.fikr=fikrs.id AND fikrs.ville='$ville'  GROUP BY idFikr LIMIT $perPage OFFSET $offset";
+} elseif(isset($_GET['fikr'])){//Filtre by fikr
+  $fikr = $_GET['fikr'];
+  $sql = "SELECT datas.id, datas.titre, datas.date, datas.fikr, datas.chemin, fikrs.id as idFikr, fikrs.photo as path_url, fikrs.livre, fikrs.langue, fikrs.ville FROM datas, fikrs WHERE datas.fikr=fikrs.id AND fikrs.id='$fikr'  GROUP BY idFikr LIMIT $perPage OFFSET $offset";
+} else {
+  $sql = "SELECT datas.id, datas.titre, datas.date, datas.fikr, datas.chemin, fikrs.id as idFikr, fikrs.photo as path_url, fikrs.livre, fikrs.langue, fikrs.ville FROM datas, fikrs WHERE datas.fikr=fikrs.id GROUP BY idFikr LIMIT $perPage OFFSET $offset";
+}
 $data = Manager::getMultiplesRecords($sql);
 ?>
 <div class="site-blocks-cover overlay inner-page-cover" style="background-image: url(public/images/voie4.jpg);" data-aos="fade" data-stellar-background-ratio="0.5">

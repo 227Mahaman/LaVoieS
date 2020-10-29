@@ -68,24 +68,27 @@ $annonces = Manager::getMultiplesRecords($sql2);
         </div>
       </div>
       <div class="col-lg-7">
-        <?php
-          $sql = "SELECT * FROM annonces ORDER BY date_annonce DESC LIMIT 8";
-          $data = Manager::getMultiplesRecords($sql);
-          //$data = Manager::getData("annonces", true)['data'];
-          if (is_array($data) || is_object($data)) {
+        <div class="row">
+          <?php
+            $sql = "SELECT * FROM annonces ORDER BY date_annonce DESC LIMIT 8";
+            $data = Manager::getMultiplesRecords($sql);
+            //$data = Manager::getData("annonces", true)['data'];
+            if (is_array($data) || is_object($data)) {
               foreach ($data as $value) {
               ?>
-            <div class="d-block d-md-flex podcast-entry bg-white mb-5" data-aos="fade-up">
-              <div class="image" style="background-image: url('<?= $target.Manager::getData("files", "id", $value['photo'])['data']['file_url']; ?>');"></div>
-              <div class="text">
-                <h3 class="font-weight-light"><a href="index.php?p=article&id=<?= $value['id']?>"><?= $value['titre']?></a></h3>
-                <div class="text-white mb-3"><span class="text-black-opacity-05"><small>By <?= $value['auteur']?> <span class="sep">/</span> Date: <?= $value['date_event']?> à <?= $value['time_event']?> <span class="sep">/</span>Lieu: <?= $value['lieu']?></small></span></div>
-                <p><?= $value['description']?></p>
+              <div class="col-lg-6">
+                <div class="d-block podcast-entry bg-white mb-5" data-aos="fade-up">
+                  <img style="width: 100%; height: 50%;" src="<?= $target.Manager::getData("files", "id", $value['photo'])['data']['file_url']; ?>" alt="">
+                  <div style="width: 100%;" class="text">
+                    <h5  class="font-weight-light"><a href="index.php?p=article&id=<?= $value['id']?>"><?= $value['titre']?></a></h5>
+                    <div class="text-white mb-3"><span class="text-black-opacity-05"><small>By <?= $value['auteur']?> <span class="sep">/</span> Date: <?= $value['date_event']?> à <?= $value['time_event']?> <span class="sep">/</span>Lieu: <?= $value['lieu']?></small></span></div>
+                    <p><?= $value['description']?></p>
+                  </div>
+                </div>
               </div>
-            </div>
-            <?php } 
-          }
-        ?>
+              <?php } 
+            }?>
+        </div>
       </div>
       <div class="col-lg-3">
         <div class="featured-user  mb-5 mb-lg-0">

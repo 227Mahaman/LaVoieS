@@ -125,7 +125,7 @@ $data = Manager::getMultiplesRecords($sql);
                   foreach ($data as $value) {
                   ?>
                 <li>
-                  <a href="index.php?p=fikr&langue=<?= $value['id']?>" class="d-flex align-items-center">
+                  <a href="index.php?p=audio&langue=<?= $value['id']?>" class="d-flex align-items-center">
                     <img src="public/images/person_1.jpg" alt="Image" class="img-fluid mr-2">
                     <div class="podcaster">
                       <span class="d-block"><?= $value['titre']?></span>
@@ -148,7 +148,7 @@ $data = Manager::getMultiplesRecords($sql);
                 foreach ($data as $value) {
                 ?>
               <li>
-                <a href="index.php?p=fikr&category=<?= $value['id']?>" class="d-flex align-items-center">
+                <a href="index.php?p=audio&category=<?= $value['id']?>" class="d-flex align-items-center">
                   <img src="public/images/person_1.jpg" alt="Image" class="img-fluid mr-2">
                   <div class="podcaster">
                     <span class="d-block"><?= $value['titre']?></span>

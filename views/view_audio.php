@@ -93,8 +93,9 @@ $data = Manager::getMultiplesRecords($sql);
                     <div class="image"  style="width: 48%; height: 100%; background-image: url('<?= $target.Manager::getData("files", "id", $value['path_url'])['data']['file_url']; ?>');"></div>
                     <div class="text">
                       <h6 class="font-weight-light"><a href="index.php?p=datas&fikr=<?= $value['id']?>"><?= $value['titre']?></a></h6>
-                      <div class="text-white mb-3"><span class="text-black-opacity-05"><small>Publié le <?= $value['date']?></small><span class="sep">/</span> <small><a href="index.php?p=audio&langue=<?= $langue['id'];?>">#<?= $langue['titre'];?></small><span class="sep">/</span><small><a href="index.php?p=audio&fikr=<?= $fikr['id'];?>">#<?= $fikr['titre'];?></a></small> <span class="sep">/</span><small><a href="index.php?p=audio&ville=<?= $ville['id'];?>">#<?= $ville['titre'];?></a></small> </span></div>
-                      <div class="text-white mb-3"> <a href="<?= $target.Manager::getData("files", "id", $value['chemin'])['data']['file_url'] ?>" download="<?= $value['titre']?>"><i class="fa fa-car"></i>Télécharger</a></span></div>
+                      <div class="text-white mb-3"><span class="text-black-opacity-05"><small>Publier le <?= $value['date']?></small></span></div>
+                      <div class="text-white mb-3"><span class="text-black-opacity-05"><small><a href="index.php?p=audio&langue=<?= $langue['id'];?>">#<?= $langue['titre'];?></small><span class="sep">/</span><small><a href="index.php?p=audio&fikr=<?= $fikr['id'];?>">#<?= $fikr['titre'];?></a></small> <span class="sep">/</span><small><a href="index.php?p=audio&ville=<?= $ville['id'];?>">#<?= $ville['titre'];?></a></small> </span></div>
+                      <div class="text-white mb-3"> <a href="<?= $target.Manager::getData("files", "id", $value['chemin'])['data']['file_url'] ?>" download="<?= $value['titre']?>"><i class="fa fa-edit"></i>Télécharger</a></span></div>
                       <div class="player">
                         <audio id="player2" preload="metadata" controls style="max-width: 100%">
                           <source src="<?= $target.Manager::getData("files", "id", $value['chemin'])['data']['file_url'] ?>" type="audio/mp3">
@@ -117,6 +118,7 @@ $data = Manager::getMultiplesRecords($sql);
                         
                         <div class="d-block podcast-entry bg-white mb-5 col-lg-12" data-aos="fade-up">
                         <h6 class="font-weight-light"><a href="index.php?p=datas&fikr=<?= $value['id']?>"><?= $value['titre']?></a></h6>
+                        <div class="text-white mb-3"> <a href="<?= $target.Manager::getData("files", "id", $value['chemin'])['data']['file_url'] ?>" download="<?= $value['titre']?>"><i class="fa fa-edit"></i>Télécharger</a></span></div>
                         <div class="player">
                           <audio id="player2" preload="metadata" controls style="width: 100% !important">
                           <source src="<?= $target.Manager::getData("files", "id", $value['chemin'])['data']['file_url']; ?>" type="audio/mp3">

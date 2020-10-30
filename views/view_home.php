@@ -94,22 +94,27 @@ $annonces = Manager::getMultiplesRecords($sql2);
         <div class="featured-user  mb-5 mb-lg-0">
           <h3 class="mb-4">Recent Dourous</h3>
           <ul class="list-unstyled">
-            <li>
-              <a href="#" class="d-flex align-items-center">
-                <div class="podcaster">
-                  <span class="d-block">Actualité</span>
-                  <span class="small"><?= $actualites['0']['total'];?> articles</span>
-                </div>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="d-flex align-items-center">
-                <div class="podcaster">
-                  <span class="d-block">Annonces</span>
-                  <span class="small"><?= $annonces['0']['total'];?> articles</span>
-                </div>
-              </a>
-            </li>
+            <?php
+              $sql = "SELECT fikrs.id, fikrs.titre, fikrs.date_ajout, fikrs.ville, fikrs.langue, fikrs.auteur, fikrs.livre, fikrs.photo, (SELECT COUNT(datas.id) FROM datas WHERE datas.fikr=fikrs.id) as nombre FROM fikrs ORDER BY fikrs.date_ajout ASC LIMIT 8";
+              $data = Manager::getMultiplesRecords($sql);
+              if (is_array($data) || is_object($data)) {
+                foreach ($data as $value) {
+                  $oulema = Manager::getData('auteurs', 'id', $value['auteur'])['data'];
+                  $langue = Manager::getData('langues', 'id', $value['langue'])['data'];
+                  $ville = Manager::getData('ville', 'id', $value['ville'])['data'];
+                ?>
+                <li>
+                  <a href="#" class="d-flex align-items-center">
+                    <div class="podcaster">
+                      <span class="d-block"><?= $value['titre']?>, <?= $oulema['nom'] . ' ' . $oulema['prenom']?></span>
+                      <span class="small">Nombre: <?= $value['nombre']?> </span>
+                    </div>
+                  </a>
+                </li>
+                <?php } 
+              }
+            ?>
+            
           </ul>
         </div>
       </div>

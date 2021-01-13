@@ -120,10 +120,11 @@
         </div>
       </div>
     </footer>
+    <a href="" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
   </div>
 
   <script src="public/js/jquery-3.3.1.min.js"></script>
-  <script src="public/js/jquery-migrate-3.0.1.min.js"></script>
+  <!-- <script src="public/js/jquery-migrate-3.0.1.min.js"></script> -->
   <script src="public/js/jquery-ui.js"></script>
   <script src="public/js/popper.min.js"></script>
   <script src="public/js/bootstrap.min.js"></script>

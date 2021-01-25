@@ -21,7 +21,12 @@
 
   <link rel="stylesheet" href="public/css/style.css">
   <link rel="stylesheet" href="public/css/font-awesome.min.css" type="text/css">
-
+  <!-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+   <!-- carousel -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.css">
 </head>
 <body>
 
@@ -135,6 +140,7 @@
   <script src="public/js/aos.js"></script>
 
   <script src="public/js/mediaelement-and-player.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.js"></script>
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -151,6 +157,26 @@
             }
           }
         });
+      }
+    });
+    $('.testimonial_owlCarousel').owlCarousel({
+      loop:true,
+      margin:10,
+      dots:false,
+      nav:true,
+      autoplay:false,   
+      smartSpeed: 3000, 
+      autoplayTimeout:4000,
+      responsive:{
+          0:{
+              items:1
+          },
+          600:{
+              items:1
+          },
+          1000:{
+              items:1
+          }
       }
     });
   </script>
